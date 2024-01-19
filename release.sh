@@ -1,1 +1,1 @@
-dotnet /opt/bin/csharp/DirectoryTest
+/opt/bin/csharp/DirectoryTest
