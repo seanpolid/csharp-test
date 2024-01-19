@@ -12,4 +12,5 @@ cp ./bin/Debug/net6.0/publish/* /opt/bin/csharp
 cp ./release.sh /opt/bin/release
 
 # Update path variable
-export PATH=/opt/bin
+echo 'export PATH=$PATH:/opt/bin' >> ~/.bashrc
+source ~/.bashrc
