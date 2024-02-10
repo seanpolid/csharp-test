@@ -11,5 +11,10 @@ pipeline {
 				sh 'dotnet test'
 			}
 		}
+        stage('Package') {
+            steps {
+                sh 'pwd'
+            }
+        }
 	}
 }	
