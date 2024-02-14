@@ -29,7 +29,8 @@ pipeline {
                                 regex: '^(v[0-9]+.[0-9]+||v[0-9]+.[0-9]+.[0-9]+)$']
                     ])
 
-                    sh "release --v ${version} --p ${packageOutput} --r csharp-test"
+					def command = "release --r csharp-test --v ${version} --p ${packageOutput}"
+                    sh "${command}"
 				}
             }
         }
