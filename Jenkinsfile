@@ -14,10 +14,10 @@ pipeline {
         stage('Package and Release') {
             steps {
 				script {
-                    def path = sh(returnStdout: true, script: 'package')
+                    def packageOutput = sh(returnStdout: true, script: 'package')
 
-                    if (!path.contains("Path") {
-						error("An exception occurred while packaging: " + standardOutput)
+                    if (!packageOutput.contains("Path:") {
+						error("An exception occurred while packaging: " + packageOutput)
 					}
 
 					def version = input(
@@ -29,7 +29,7 @@ pipeline {
                                 regex: '^(v[0-9]+.[0-9]+||v[0-9]+.[0-9]+.[0-9]+)$']
                     ])
 
-                    sh "release --v ${version} --p ${standardOutput} --r csharp-test"
+                    sh "release --v ${version} --p ${packageOutput} --r csharp-test"
 				}
             }
         }
