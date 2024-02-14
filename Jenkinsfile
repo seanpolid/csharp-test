@@ -14,19 +14,9 @@ pipeline {
         stage('Package and Release') {
             steps {
 				script {
-					def sout = new StringBuilder()
-                    def serr = new StringBuilder()
-                    
-                    def command = 'package'
-                    def process = command.execute()
-                    
-                    process.consumeProcessOutput(sout, serr)
-                    process.waitForOrKill(1000)
-                    
-                    def standardOutput = sout.toString()
-                    def file = new File(standardOutput)
+                    def path = sh(returnStdout: true, script: 'package')
 
-                    if (!file.exists()) {
+                    if (!path.contains("Path") {
 						error("An exception occurred while packaging: " + standardOutput)
 					}
 
@@ -39,7 +29,7 @@ pipeline {
                                 regex: '^(v[0-9]+.[0-9]+||v[0-9]+.[0-9]+.[0-9]+)$']
                     ])
 
-                    sh "release --v ${version} --p ${standardOutput} --r csharp-test" 
+                    sh "release --v ${version} --p ${standardOutput} --r csharp-test"
 				}
             }
         }
