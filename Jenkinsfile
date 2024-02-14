@@ -20,6 +20,8 @@ pipeline {
 						error("An exception occurred while packaging: " + packageOutput)
 					}
 
+					def path = packageOutput.substring(packageOutput.indexOf(" "))
+
 					def version = input(
                         message: 'Please enter the version for the release:',
                         parameters: [
@@ -29,7 +31,7 @@ pipeline {
                                 regex: '^(v[0-9]+.[0-9]+||v[0-9]+.[0-9]+.[0-9]+)$']
                     ])
 
-					def command = "release --r csharp-test --v ${version} --p ${packageOutput}"
+					def command = "release --r csharp-test --v ${version} --p ${path}"
                     sh "${command}"
 				}
             }
