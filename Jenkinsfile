@@ -16,7 +16,7 @@ pipeline {
 				script {
                     def packageOutput = sh(returnStdout: true, script: 'package')
 
-                    if (!packageOutput.contains("Path:") {
+                    if (!packageOutput.contains("Path:")) {
 						error("An exception occurred while packaging: " + packageOutput)
 					}
 
