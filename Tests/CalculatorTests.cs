@@ -13,5 +13,12 @@ namespace Tests
             // Assert
             Assert.Equal(3, sum);
         }
+
+        [Fact]
+        public void Failure()
+        {
+            // Assert
+            Assert.Equal(5, 1);
+        }
     }
 }
