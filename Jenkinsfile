@@ -31,7 +31,7 @@ pipeline {
                                 regex: '^(v[0-9]+.[0-9]+||v[0-9]+.[0-9]+.[0-9]+)$']
                     ])
 
-                    def releaseOutput = sh(redirectStdout: true, script: "release --r csharp-test --v ${version} --p ${path}")
+                    def releaseOutput = sh(returnStdout: true, script: "release --r csharp-test --v ${version} --p ${path}")
 					if (!releaseOutput.contains("success")) {
 						error("An exception occurred while releasing: " + releaseOutput)
 					}
